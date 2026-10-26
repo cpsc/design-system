@@ -1,0 +1,22 @@
+/* Geist and Geist Mono from vendor/geist, SIL Open Font License 1.1. */
+@font-face {
+  font-family: "Geist";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url(../vendor/geist/Geist-Variable.woff2) format("woff2");
+}
+@font-face {
+  font-family: "Geist";
+  font-style: italic;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url(../vendor/geist/Geist-Italic-Variable.woff2) format("woff2");
+}
+@font-face {
+  font-family: "Geist Mono";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url(../vendor/geist/GeistMono-Variable.woff2) format("woff2");
+}

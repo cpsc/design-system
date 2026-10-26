@@ -1,0 +1,104 @@
+{
+  "name": "@zeabur/design-system",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Zeabur's design system: components on Base UI, shadcn/ui-compatible theme, tokens, type roles, utilities and fonts for Tailwind CSS v4",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zeabur-oss/design-system.git"
+  },
+  "style": "./index.css",
+  "files": [
+    "index.css",
+    "tokens.css",
+    "fonts.css",
+    "src",
+    "lint",
+    "vendor",
+    "!src/**/*.test.ts"
+  ],
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "exports": {
+    ".": {
+      "style": "./index.css",
+      "default": "./index.css"
+    },
+    "./tokens.css": {
+      "style": "./tokens.css",
+      "default": "./tokens.css"
+    },
+    "./fonts.css": {
+      "style": "./fonts.css",
+      "default": "./fonts.css"
+    },
+    "./components/*": "./src/components/*.tsx",
+    "./variants/*": "./src/variants/*.ts",
+    "./lint": "./lint/zeabur.js",
+    "./vendor/*": "./vendor/*",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "storybook": "storybook dev --port 6006",
+    "build-storybook": "storybook build --output-dir storybook-static",
+    "typecheck": "tsc -b",
+    "test": "bun test src/",
+    "test:css": "bun scripts/check-css.ts",
+    "lint": "oxlint --deny-warnings --report-unused-disable-directives",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
+    "fallow": "bunx fallow@3.33.1"
+  },
+  "devDependencies": {
+    "@base-ui/react": "1.9.0",
+    "@iconify-json/ph": "1.2.2",
+    "@shadcn/lint": "0.2.1",
+    "@storybook/addon-themes": "10.6.2",
+    "@storybook/react-vite": "10.6.2",
+    "@svgr/core": "8.1.0",
+    "@svgr/plugin-jsx": "8.1.0",
+    "@tailwindcss/cli": "4.3.3",
+    "@tailwindcss/vite": "4.3.3",
+    "@types/bun": "1.4.3",
+    "@types/node": "26.6.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.2",
+    "class-variance-authority": "0.7.1",
+    "cn": "0.5.0",
+    "geist": "1.8.1",
+    "oxfmt": "0.73.0",
+    "oxlint": "1.88.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "recharts": "3.10.1",
+    "sonner": "2.0.8",
+    "storybook": "10.6.2",
+    "tailwindcss": "4.3.3",
+    "typescript": "7.0.2",
+    "unplugin-icons": "24.0.0",
+    "vite": "8.3.4"
+  },
+  "peerDependencies": {
+    "@base-ui/react": "^1.8.0",
+    "class-variance-authority": "^0.7.1",
+    "cn": "^0.4.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "recharts": "^3.8.0",
+    "sonner": "^2.0.8",
+    "tailwindcss": "^4.3.0"
+  },
+  "peerDependenciesMeta": {
+    "recharts": {
+      "optional": true
+    },
+    "sonner": {
+      "optional": true
+    }
+  },
+  "packageManager": "bun@1.4.2"
+}

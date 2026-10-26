@@ -1,0 +1,9 @@
+/* Tailwind skips node_modules when it looks for class names, hence the @source. */
+@import "./vendor/shadcn/shadcn.css";
+@import "./src/fonts.css";
+@import "./tokens.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@source "./src/components";
+@source "./src/variants";

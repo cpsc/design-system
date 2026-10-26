@@ -1,0 +1,49 @@
+{
+  "$schema": "https://raw.githubusercontent.com/fallow-rs/fallow/v3.33.1/schema.json",
+  // covers/ is its own package; render.ts imports each cover by path.
+  "workspaces": { "patterns": ["covers"] },
+  "entry": ["covers/render.ts"],
+  "dynamicallyLoaded": ["covers/*/cover.ts", "covers/**/*.css"],
+  // unplugin-icons loads these by name; `~icons/…` is its virtual module. scripts/check-fonts.sh
+  // compares vendor/geist with the geist package.
+  "ignoreDependencies": ["@svgr/plugin-jsx", "@iconify-json/ph", "~icons", "geist"],
+  // popup.tsx loads this module whole through its loader.
+  "ignoreExports": [{ "file": "src/components/popup-parts.ts", "exports": ["*"] }],
+  "ignorePatterns": ["storybook-static/**"],
+  "duplicates": { "ignore": ["vendor/**"] },
+  "health": { "ignore": ["vendor/**"] },
+  // Components import components and variants; variants import nothing; stories import components.
+  "boundaries": {
+    "zones": [
+      { "name": "components", "patterns": ["src/components/**"] },
+      { "name": "variants", "patterns": ["src/variants/**"] },
+      { "name": "stories", "patterns": ["stories/**", ".storybook/**"] },
+      { "name": "lint", "patterns": ["lint/**"] },
+      { "name": "covers", "patterns": ["covers/**"] }
+    ],
+    "rules": [
+      { "from": "components", "allow": ["variants"] },
+      { "from": "variants", "allow": [] },
+      { "from": "stories", "allow": ["components"] },
+      { "from": "lint", "allow": [] },
+      { "from": "covers", "allow": [] }
+    ],
+    "coverage": {
+      "requireAllFiles": true,
+      "allowUnmatched": [
+        "*.css",
+        "src/*.css",
+        "src/*.test.ts",
+        "scripts/**",
+        "*.config.ts",
+        "vendor/**"
+      ]
+    }
+  },
+  "rules": {
+    "policy-violation": "off",
+    "thin-wrapper": "warn",
+    "prop-drilling": "warn",
+    "duplicate-prop-shape": "warn"
+  }
+}

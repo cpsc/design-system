@@ -1,0 +1,6 @@
+The Zeabur name, logo and mark are trademarks of Zeabur Inc. They are not licensed under the
+Apache License 2.0 that covers the rest of this repository. These files are here so Zeabur's own
+products can show them; do not use them to name or represent another product or service.
+
+logo.svg            the mark, from Zeabur's dashboard (public/logo.svg)
+logo-with-text.svg  the mark and the wordmark, from zeabur.com (public/logo-with-text-white.svg)

@@ -1,0 +1,5 @@
+# shadcn/ui's base styles: the `shadcn/tailwind.css` export of the shadcn package 4.21.4 (MIT
+# License, https://github.com/shadcn-ui/ui), copied verbatim; its notice is the file's first
+# comment. Change it only by copying a newer release's file whole.
+package = shadcn@4.21.4
+export = shadcn/tailwind.css

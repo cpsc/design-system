@@ -1,0 +1,84 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "ignorePatterns": ["storybook-static", "vendor"],
+  "plugins": ["eslint", "typescript", "unicorn", "oxc", "react", "jsx-a11y"],
+  "jsPlugins": ["@shadcn/lint", "./lint/zeabur.js"],
+  "categories": {
+    "correctness": "error"
+  },
+  "settings": {
+    "shadcn": {
+      "note": "See README.md, \"Tokens and rules\": give the component a variant or size rather than restyling it; use the type-* roles, the spacing scale or a named token from src/tokens.css; dynamic values are custom properties.",
+      "componentImports": [
+        "^\\./[a-z-]+$",
+        "^\\.\\./src/components/",
+        "^@zeabur/design-system/components/"
+      ],
+      "ignoreImports": ["^\\./popup(-parts)?$"]
+    }
+  },
+  "rules": {
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }],
+    "jsx-a11y/prefer-tag-over-role": "off",
+    "no-restricted-imports": [
+      "error",
+      {
+        "paths": [
+          {
+            "name": "@base-ui/react",
+            "message": "Import the part you use (`@base-ui/react/<part>`), not the root barrel, so an app bundles only that part."
+          },
+          {
+            "name": "framer-motion",
+            "message": "Motion is CSS here: transitions, `@starting-style` and Base UI's data-starting-style / data-ending-style (README, \"Tokens and rules\")."
+          },
+          {
+            "name": "motion",
+            "message": "Motion is CSS here: transitions, `@starting-style` and Base UI's data-starting-style / data-ending-style (README, \"Tokens and rules\")."
+          }
+        ],
+        "patterns": [
+          {
+            "regex": "^@/",
+            "message": "Apps compile these sources with their own `@/` alias: import siblings as \"./name\" (the shadcn CLI writes `@/components/…`; rewrite it)."
+          },
+          {
+            "regex": "^@radix-ui/",
+            "message": "The components are on Base UI (`@base-ui/react/<part>`), not Radix."
+          },
+          {
+            "regex": "^@headlessui/",
+            "message": "The components are on Base UI (`@base-ui/react/<part>`), not Headless UI."
+          },
+          {
+            "regex": "^(framer-motion|motion)/",
+            "message": "Motion is CSS here: transitions, `@starting-style` and Base UI's data-starting-style / data-ending-style (README, \"Tokens and rules\")."
+          }
+        ]
+      }
+    ],
+    "shadcn/no-restyle": [
+      "error",
+      {
+        "allow": ["layout"],
+        "contracts": [
+          { "pattern": "^RadioGroup$", "allow": ["layout", "gap-*"] },
+          { "pattern": "^TableCell$", "allow": ["layout", "color", "type-mono"] }
+        ]
+      }
+    ],
+    "shadcn/no-raw-colors": "error",
+    "shadcn/no-arbitrary-values": "error",
+    "shadcn/no-inline-styles": "error",
+    "shadcn/no-unknown-classes": "error",
+    "shadcn/require-static-classes": "error",
+    "zeabur/no-palette-classes": "error",
+    "zeabur/no-unguarded-motion": "error"
+  },
+  "overrides": [
+    {
+      "files": ["src/components/label.tsx"],
+      "rules": { "jsx-a11y/label-has-associated-control": "off" }
+    }
+  ]
+}
